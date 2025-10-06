@@ -155,6 +155,40 @@
         @media (prefers-reduced-motion: reduce){
             .card, .btn, .heart, .spawn-heart, .confetti {animation: none !important; transition: none !important}
         }
+        @media (prefers-reduced-motion: reduce){
+            .hug-animate, .arm, .nudge-card, .hug-card, .cute-char {animation: none !important; transition: none !important}
+        }
+        /* hug popup */
+        .hug-card{pointer-events:auto;background:linear-gradient(180deg,#fff,#fff7fb);color:#222;border-radius:12px;padding:12px 14px;box-shadow:0 14px 40px rgba(0,0,0,0.12);display:flex;gap:10px;align-items:center;min-width:220px}
+        body.dark .hug-card{background:linear-gradient(180deg,#111217,#0f1518);color:#e9eef3}
+        .hug-avatar{width:56px;height:56px;border-radius:12px;overflow:hidden;flex-shrink:0}
+        .hug-avatar img{width:100%;height:100%;object-fit:cover}
+        .hug-text{font-size:14px}
+        .hug-animate{animation:hugPulse 900ms ease-in-out}
+        @keyframes hugPulse{0%{transform:scale(0.98)}50%{transform:scale(1.03)}100%{transform:scale(1)}}
+
+    /* cute character for hug/nudge actions */
+    .cute-char{position:relative;width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#ffeef6,#fff0f6);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    body.dark .cute-char{background:linear-gradient(135deg,#15181b,#0f1518)}
+    .cute-face{position:relative;width:36px;height:36px;border-radius:50%;background:linear-gradient(180deg,#fff,#fffbfe);display:flex;align-items:center;justify-content:center;flex-direction:column}
+    .cute-face .eye{width:6px;height:6px;background:#333;border-radius:50%;margin:0 6px}
+    .cute-face .mouth{width:10px;height:6px;border-bottom-left-radius:6px;border-bottom-right-radius:6px;border-top-left-radius:6px;border-top-right-radius:6px;background:#ff6b95;margin-top:4px}
+    .arm{position:absolute;top:18px;width:14px;height:34px;background:linear-gradient(180deg,#ffd7e8,#ffc6de);border-radius:10px}
+    .arm.left{left:-8px;transform-origin:top right;transform:rotate(-40deg)}
+    .arm.right{right:-8px;transform-origin:top left;transform:rotate(40deg)}
+    /* hugging motion */
+    .hug-action .arm.left{animation:hugArmLeft 900ms ease-in-out}
+    .hug-action .arm.right{animation:hugArmRight 900ms ease-in-out}
+    @keyframes hugArmLeft{0%{transform:rotate(-40deg)}40%{transform:rotate(-6deg)}60%{transform:rotate(-6deg)}100%{transform:rotate(-40deg)}}
+    @keyframes hugArmRight{0%{transform:rotate(40deg)}40%{transform:rotate(6deg)}60%{transform:rotate(6deg)}100%{transform:rotate(40deg)}}
+    /* nudge (quick poke) motion */
+    .nudge-action .arm.left{animation:nudgeLeft 700ms ease-in-out}
+    .nudge-action .arm.right{animation:nudgeRight 700ms ease-in-out}
+    @keyframes nudgeLeft{0%{transform:rotate(-40deg) translateX(0)}30%{transform:rotate(-20deg) translateX(8px)}60%{transform:rotate(-40deg) translateX(0)}100%{transform:rotate(-40deg) translateX(0)}}
+    @keyframes nudgeRight{0%{transform:rotate(40deg) translateX(0)}30%{transform:rotate(20deg) translateX(-8px)}60%{transform:rotate(40deg) translateX(0)}100%{transform:rotate(40deg) translateX(0)}}
+    /* card nudge shake */
+    .nudge-card{animation:nudgeCard 720ms ease-in-out}
+    @keyframes nudgeCard{0%{transform:translateX(0)}20%{transform:translateX(6px)}40%{transform:translateX(-6px)}60%{transform:translateX(4px)}80%{transform:translateX(-2px)}100%{transform:translateX(0)}}
     </style>
 </head>
 <body>
@@ -190,25 +224,25 @@
             <main class="main">
                 <section class="section objective">
                     <h3><span class="heart">❤️</span> Objective</h3>
-                    <p style="margin:0" id="objective">To be your go-to person for laughter, support, spontaneous adventures, and cozy nights in. My aim is a long-term contract of care, curiosity, and cuddles — renewable annually with kisses.</p>
+                    <p style="margin:0" id="objective">To become someone who will stand beside her through every high and low, bringing comfort during storms, laughter during calm, and love that grows stronger each day.</p>
+                </section>
+
+                <section class="section">
+                    <h3>Personal Summary</h3>
+                    <div class="muted">A caring, loyal, and understanding individual ready to offer time, effort, patience, and consistency. Equipped with a good sense of humor, emotional depth, and the ability to listen — not just to words, but to silence.</div>
                 </section>
 
                 <section class="section">
                     <h3>Skills & Love Languages</h3>
                     <div class="row">
                         <div style="flex:1">
-                            <div class="skill">
-                                <div class="label"><span>Listening</span><span>100%</span></div>
-                                <div class="bar"><i style="width:100%"></i></div>
-                            </div>
-                            <div class="skill">
-                                <div class="label"><span>Surprises & Thoughtful Gestures</span><span>92%</span></div>
-                                <div class="bar"><i style="width:92%"></i></div>
-                            </div>
-                            <div class="skill">
-                                <div class="label"><span>Cooking/Comfort Food</span><span>86%</span></div>
-                                <div class="bar"><i style="width:86%"></i></div>
-                            </div>
+                            <ul style="margin:6px 0 0 12px;line-height:1.6">
+                                <li>💬 <strong>Communication</strong> — Honest, open, and heartfelt</li>
+                                <li>💖 <strong>Loyalty</strong> — 100% guaranteed</li>
+                                <li>🎭 <strong>Humor</strong> — To make her laugh even when she’s not in the mood</li>
+                                <li>🌧️ <strong>Resilience</strong> — Willing to stay through every up and down</li>
+                                <li>🌅 <strong>Hope</strong> — Always believes in her and their journey</li>
+                            </ul>
                         </div>
                         <div style="width:220px">
                             <div class="muted">Primary Love Languages</div>
@@ -225,18 +259,26 @@
                     <h3>Experience</h3>
                     <article class="experience-item">
                         <div style="display:flex;justify-content:space-between;align-items:baseline">
-                            <div><strong>Official Boyfriend</strong> — Partner-in-crime</div>
-                            <div class="muted">Aspirational</div>
+                            <div><strong>Listener & Supporter</strong> — Emotional support & encouragement</div>
+                            <div class="muted">Ongoing</div>
                         </div>
-                        <div class="muted" style="margin-top:6px">Intentions: Learn your favorite coffee order (when we meet), plan small spontaneous adventures, and build cozy blanket forts together.</div>
+                        <div class="muted" style="margin-top:6px">Provided emotional support, encouragement, and understanding during difficult times.</div>
                     </article>
 
                     <article class="experience-item">
                         <div style="display:flex;justify-content:space-between;align-items:baseline">
-                            <div><strong>Support Specialist</strong> — Shoulder & Encouragement</div>
-                            <div class="muted">Ongoing</div>
+                            <div><strong>Lover of Small Moments</strong> — Everyday appreciation</div>
+                            <div class="muted">Everyday</div>
                         </div>
-                        <div class="muted" style="margin-top:6px">Intentions: Be here for late-night talks, cheer for your wins (big or small), and bring snacks to movie nights — virtual or in person.</div>
+                        <div class="muted" style="margin-top:6px">Appreciated simple things like her smile, random messages, and quiet moments together.</div>
+                    </article>
+
+                    <article class="experience-item">
+                        <div style="display:flex;justify-content:space-between;align-items:baseline">
+                            <div><strong>Problem Solver</strong> — Practical help & presence</div>
+                            <div class="muted">As needed</div>
+                        </div>
+                        <div class="muted" style="margin-top:6px">Helped lighten burdens and offered solutions — or sometimes, just a warm presence.</div>
                     </article>
                 </section>
 
@@ -266,7 +308,13 @@
 
                 <section class="section">
                     <h3>References</h3>
-                    <div class="muted">Available upon request — but you can ask your friends, family, and your Dog(Namii). They all approve.</div>
+                    <div class="muted">Her smile (confirms motivation)</div>
+                    <div class="muted">Her heart (pending approval)</div>
+                </section>
+
+                <section class="section">
+                    <h3>Availability</h3>
+                    <div class="muted">Full-time. No days off. Ready anytime she needs someone.</div>
                 </section>
 
                 <div class="cta">
@@ -304,6 +352,8 @@
     </div>
     <!-- effects layer (floating hearts/confetti) -->
     <div id="effects" class="effects-layer" aria-hidden="true"></div>
+    <!-- hug popup container -->
+    <div id="hugPopup" aria-hidden="true" style="position:fixed;right:16px;bottom:16px;z-index:10000;pointer-events:none"></div>
 
     <script>
         function applyCustomization(){
@@ -346,14 +396,18 @@
         }
 
         function pledge(){
-            // visual effect + friendly message
+            // visual effect + friendly popup
             spawnHearts(8);
             spawnConfetti(20);
-            alert('Pledge accepted — automatic hug queued. 💌');
+            // small vibration on mobile
+            try{ navigator.vibrate && navigator.vibrate([40,20,40]); }catch(e){}
+            showHugPopup();
         }
         function nudge(){
             spawnHearts(4);
-            alert('Nudge sent. Expect a silly message soon! 😊');
+            spawnConfetti(8);
+            try{ navigator.vibrate && navigator.vibrate(30); }catch(e){}
+            showNudgePopup();
         }
 
         function openMessageModal(){
@@ -630,6 +684,77 @@
                 container.appendChild(el);
                 setTimeout(()=> el.remove(), 1400);
             }
+        }
+
+        // Hug popup
+        function showHugPopup(){
+            const container = document.getElementById('hugPopup');
+            if(!container) return;
+            // Build a hug card with a small animated character that hugs
+            const card = document.createElement('div');
+            card.className = 'hug-card hug-animate hug-action';
+            card.style.pointerEvents = 'auto';
+            // character
+            const charWrap = document.createElement('div');
+            charWrap.className = 'cute-char';
+            const leftArm = document.createElement('div'); leftArm.className = 'arm left';
+            const rightArm = document.createElement('div'); rightArm.className = 'arm right';
+            const face = document.createElement('div'); face.className = 'cute-face';
+            const eyes = document.createElement('div'); eyes.style.display = 'flex'; eyes.style.alignItems = 'center'; eyes.style.justifyContent = 'center';
+            const e1 = document.createElement('div'); e1.className = 'eye'; const e2 = document.createElement('div'); e2.className = 'eye';
+            eyes.appendChild(e1); eyes.appendChild(e2);
+            const mouth = document.createElement('div'); mouth.className = 'mouth';
+            face.appendChild(eyes); face.appendChild(mouth);
+            charWrap.appendChild(leftArm); charWrap.appendChild(face); charWrap.appendChild(rightArm);
+
+            const txt = document.createElement('div');
+            txt.className = 'hug-text';
+            txt.innerHTML = `<strong>Virtual hug sent</strong><div style="font-size:12px;color:var(--muted)">to ${herName}</div>`;
+            card.appendChild(charWrap);
+            card.appendChild(txt);
+            container.appendChild(card);
+
+            // remove after 3s with fade
+            setTimeout(()=>{
+                card.style.transition = 'opacity 300ms ease, transform 300ms ease';
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(8px)';
+                setTimeout(()=> card.remove(), 350);
+            }, 3000);
+        }
+
+        function showNudgePopup(){
+            const container = document.getElementById('hugPopup');
+            if(!container) return;
+            const card = document.createElement('div');
+            card.className = 'hug-card nudge-card nudge-action';
+            card.style.pointerEvents = 'auto';
+            const charWrap = document.createElement('div');
+            charWrap.className = 'cute-char';
+            const leftArm = document.createElement('div'); leftArm.className = 'arm left';
+            const rightArm = document.createElement('div'); rightArm.className = 'arm right';
+            const face = document.createElement('div'); face.className = 'cute-face';
+            const eyes = document.createElement('div'); eyes.style.display = 'flex'; eyes.style.alignItems = 'center'; eyes.style.justifyContent = 'center';
+            const e1 = document.createElement('div'); e1.className = 'eye'; const e2 = document.createElement('div'); e2.className = 'eye';
+            eyes.appendChild(e1); eyes.appendChild(e2);
+            const mouth = document.createElement('div'); mouth.className = 'mouth';
+            face.appendChild(eyes); face.appendChild(mouth);
+            charWrap.appendChild(leftArm); charWrap.appendChild(face); charWrap.appendChild(rightArm);
+
+            const txt = document.createElement('div');
+            txt.className = 'hug-text';
+            txt.innerHTML = `<strong>Nudge sent</strong><div style="font-size:12px;color:var(--muted)">A little poke for ${herName}</div>`;
+            card.appendChild(charWrap);
+            card.appendChild(txt);
+            container.appendChild(card);
+
+            // auto-hide after 2.2s
+            setTimeout(()=>{
+                card.style.transition = 'opacity 220ms ease, transform 220ms ease';
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(6px)';
+                setTimeout(()=> card.remove(), 260);
+            }, 2200);
         }
     </script>
 </body>
